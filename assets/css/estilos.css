@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+body{
+    background-color: #0C1A26;
+}
+.tituloEntregas{
+    background-color: #F2D64B;
+    border-radius: 10px;
+    padding: 3px 10px;
+}
+.navbar{
+    background-color: #0C1A26;
+    color: #F2D64B;
+    height: 65px;
+    border-bottom: 3px solid rgb(0, 0, 0);
+}
+.infoEntrega{
+    padding: 10px;
+}
+.entrega{
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+#imagenNavbar1{
+    width: 30px;
+}
+#imagenOffcanvas1{
+ width: 250px;
+}
+#saludo{
+    margin-top: 30px;
+    color: #ffffff;
+    display: flex;
+	flex-direction: column;
+    flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-close{
+    background-color: #F2D64B;
+}
+.offcanvas{
+    background-color: #F2D64B;
+    color: #0C1A26!important;
+   
+}
+
+.nav-link{
+    color: #0C1A26;
+}
+
+.hipervinculo{
+    color: #0C1A26;
+    font-size: 8px;
+}
+
+.cerrar{
+    background-color: #F2D64B;
+}
+.navbar-toggler {
+    border: var(--bs-border-width) solid rgba(255, 255, 255, 0);
+    color: #F2D64B;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; 
+    font-size: 20px; 
+}
+.imgbts{
+    width: 120px;
+}
+.imgPizza{
+    width: 30px;
+}
+.conteMenu{
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+	justify-content: space-evenly
+}
+.imgMenu{
+    width: 110px;
+    margin: 5px;
+}
+#menu{
+    margin: 10px;
+    padding: 8px;
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #8C4820;
+    border-radius: 5px;
+    width: 130px;
+}
+#menuPrincipal{
+    display: flex;
+	justify-content: center;
+}
+#productos{
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+    margin-top: 80px;
+}
+.imgProduc{
+    margin: 2px;
+    border-radius: 10px;
+    width: 80%;
+}
+.contProducto{
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+    border: 1px solid #F2D64B;
+    color: #F2D64B;
+    margin: 10px;
+    border-radius: 10px;
+    width: 90%;
+}
+.informacionProducto{
+    margin: 10px;
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.texto{
+    color: #ffffff;
+    margin: 3px;
+    font-size: 13px;
+}
+.precio{
+    margin: 7px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.cantidad{
+    display: flex;
+    align-items: center;
+	flex-direction: row;
+}
+#Ordenar{
+    width: 100px;
+    background-color: #F2D64B;
+    color: #0C1A26;
+    border-radius: 8px;
+    border: 0;
+    margin: 10px;
+}
+#ordenCliente{
+    margin-top: 80px;
+}
+.contTotal{
+    color: #F2D64B;
+    margin-top: 300px;
+    font-size: 18px;
+    border-top: 1px solid #F2D64B;
+    display: flex;
+	flex-direction: column;
+    align-items: flex-end;
+}
+#total{
+    margin: 16px;
+    width: 150px;
+}
+#btnCompra{
+    width: 100%;
+    background-color: #8C4820;
+    color: #F2D64B;
+    border-radius: 20px;
+    height: 45px;
+    border: 0;
+}
+.destallesOrden{
+    color: #ffffff;
+    border-bottom: 1px solid #F2D64B;
+}
+.imgOrden{
+    width: 65px;
+}
+.tituloProduc{
+    font-size: 18px;
+    color: #F2D64B;
+    margin: 0px 10px;
+}
+#Cancelar{
+    color: #ff0000;
+    margin: 10px;
+    font-size: 25px;
+}
