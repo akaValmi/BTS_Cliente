@@ -98,6 +98,7 @@ function ordenar(c, idCategoria) {
           // Agregar objeto orden al arreglo de orden
           orden.push(newOrden);
     }
+    console.log(orden);
   }
   function renderizarOrden() {
     if (orden != 0) {

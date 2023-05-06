@@ -58,18 +58,51 @@
           </div>
         </div>
       </nav>
-      <main>
+      <main id="comprar">
         <div id="ordenCliente" >
           <div class="detallesOrden">DETALLES DE LA ORDEN</div>
           <div id="productos">
 
           </div>
         </div>
-        <div class="contTotal">
-            <p id="total"> TOTAL: LPS.560.00</p>
-            <button id="btnCompra">COMPRAR</button>
+        <div id="contTotal">
+            
         </div>
       </main>
+
+
+      <main id="enviarOrden">
+        <div id="ordenCliente" >
+          <div class="detallesOrden">Orden</div>
+          <div class="form-container" style="margin: 20px;">
+            <label for="card_number" style="color: #F2D64B;" >Direccion:</label>
+            <input id="direccion" class="form-control" type="text" placeholder="Ingrese su direccion"><br>   
+            <label for="card_number" style="color: #F2D64B;">Número de tarjeta de crédito o débito:</label>
+            <input class="form-control" type="text" id="tarjeta" name="card_number" placeholder="Ingrese el número de la tarjeta" required>
+          </div>
+          
+        </div>
+        <div class="centrar" >
+          <button style="background-color: #F2D64B; color: #0C1A26; margin: 20px;" id="btnIngresar" class="btn" onclick="estadoOrden()">FINALIZAR COMPRA</button>
+        </div>
+      </main>
+
+
+      <main id="estadoOrden">
+        <div id="ordenCliente" >
+          <div class="detallesOrden">ESTADO DE LA ORDEN</div>
+          <br>
+          <div id="productos">  
+            <p style="color: #F2D64B;">LA ORDEN ESTA :</p>
+            <p id="estadoO" style="color: #F2D64B;"></p>
+            <br>
+            <div class="centrar" >
+              <button  id="productos" style="background-color: #F2D64B; color: #0C1A26; margin: 20px;" class="btn" onclick="verificarEstado()">ACTUALIZAR ESTADO DE LA ENTREGA</button>
+            </div>
+          </div>
+        </div>
+      </main>
+
             
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
