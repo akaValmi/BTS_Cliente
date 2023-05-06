@@ -5,7 +5,7 @@ let cliente = JSON.parse(clienteS);
 var subTotal; 
 var comisiones;
 var isv;
-var total;
+var montoPagar;
 function renderizarProductos() {
     console.log(orden);
     document.getElementById('productos').innerHTML = '';
@@ -75,13 +75,13 @@ function calcularTotal() {
       }, 0);
     comisiones=(subTotal*0.10);
     isv= (subTotal*0.15);
-    total = subTotal+isv+comisiones;
+    montoPagar = subTotal+isv+comisiones;
         console.log(subTotal); 
     document.getElementById('contTotal').innerHTML = 
        `<p id="total"> SUBTOTAL: LPS.${subTotal}</p>
         <p id="total"> ISV: LPS.${isv}</p>
         <p id="total"> COMISIONES: LPS.${comisiones}</p>
-        <p id="total"> TOTAL: LPS.${total}</p>
+        <p id="total"> TOTAL: LPS.${montoPagar}</p>
         <button id="btnCompra" onclick="enviarOrden()" >COMPRAR</button> `;
 }
 
@@ -94,41 +94,68 @@ function enviarOrden() {
 async function estadoOrden() {
     let direccion = document.getElementById("direccion").value;
     let tarjeta = document.getElementById("tarjeta").value;
-    let client =cliente.nombreCliente;
+    let nombreCliente =cliente.nombreCliente;
+    let estadoOrden = "PENDIENTE";
+    let productos = orden;
     const data = {
-        client,
+        nombreCliente,
         direccion,
-        total,
-        orden,
+        montoPagar,
+        estadoOrden,
+        productos,
       };
-    const respuesta = await fetch(
-        `http://127.0.0.1:3002/ordenes/add`,
-        {
-            method: "post",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data),
-        }
-    ); 
-    const resJSON = await respuesta.json();
-
-    console.log('Respuesta de agregar una orden',resJSON);
+      console.log(data);
 
     if (direccion.length > 0 && tarjeta.length > 0) {
         document.getElementById('estadoOrden').style.display = "block";
         document.getElementById('enviarOrden').style.display = "none";
         document.getElementById('comprar').style.display = "none";
-        verificarEstado()
+
+    
+                const respuesta = await fetch(
+                    `http://127.0.0.1:3002/ordenes/add`,
+                    {
+                        method: "post",
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data),
+                    }
+                ); 
+                const resJSON = await respuesta.json();
+                console.log(resJSON);
+                let id = resJSON.updateResponse._id;
+
+
+    
+                const respuestaa = await fetch(
+                    `http://127.0.0.1:3002/clientes/${cliente._id}/productos`,
+                    {
+                        method: "put",
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id: id
+                        }),
+                    }
+                );
+            
+                const ressJSON = await respuestaa.json();
+            
+                console.log('Respuesta de agregar orden a cliente',ressJSON);
+            verificarEstado(id)
     }
 }
-async function verificarEstado() {
-    /*const respuesta = await fetch("http://127.0.0.1:3002/ordenes", {
+async function verificarEstado(id) {
+    const respuesta = await fetch(`http://127.0.0.1:3002/ordenes/${id} `, {
 		method: "get",
 	});
-	estado  = await respuesta.json();*/
+	estado  = await respuesta.json();
+    console.log(estado);
     document.getElementById('estadoO').innerHTML='';
-    document.getElementById('estadoO').innerHTML='PENDIENTE';
+    document.getElementById('estadoO').innerHTML=estado.estadoOrden;
    
 }
