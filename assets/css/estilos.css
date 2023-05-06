@@ -186,7 +186,12 @@ body{
     height: 45px;
     border: 0;
 }
-.destallesOrden{
+.detallesOrden{
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
     color: #ffffff;
     border-bottom: 1px solid #F2D64B;
 }
