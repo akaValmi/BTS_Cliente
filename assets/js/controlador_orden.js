@@ -6,6 +6,8 @@ var subTotal;
 var comisiones;
 var isv;
 var montoPagar;
+let product = [];
+let idOrden;
 function renderizarProductos() {
     console.log(orden);
     document.getElementById('productos').innerHTML = '';
@@ -86,6 +88,7 @@ function calcularTotal() {
 }
 
 function enviarOrden() {
+    agregarCantidadP();
     document.getElementById('estadoOrden').style.display = "none";
     document.getElementById('enviarOrden').style.display = "block";
     document.getElementById('comprar').style.display = "none";
@@ -96,17 +99,17 @@ async function estadoOrden() {
     let tarjeta = document.getElementById("tarjeta").value;
     let nombreCliente =cliente.nombreCliente;
     let estadoOrden = "PENDIENTE";
-    let productos = orden;
-    const data = {
-        nombreCliente,
-        direccion,
-        montoPagar,
-        estadoOrden,
-        productos,
-      };
-      console.log(data);
+    let productos = product;
 
     if (direccion.length > 0 && tarjeta.length > 0) {
+        const data = {
+            nombreCliente,
+            direccion,
+            montoPagar,
+            estadoOrden,
+            productos,
+          };
+          console.log(data);
         document.getElementById('estadoOrden').style.display = "block";
         document.getElementById('enviarOrden').style.display = "none";
         document.getElementById('comprar').style.display = "none";
@@ -125,6 +128,7 @@ async function estadoOrden() {
                 ); 
                 const resJSON = await respuesta.json();
                 console.log(resJSON);
+                
                 let id = resJSON.updateResponse._id;
 
 
@@ -146,11 +150,12 @@ async function estadoOrden() {
                 const ressJSON = await respuestaa.json();
             
                 console.log('Respuesta de agregar orden a cliente',ressJSON);
-            verificarEstado(id)
+                idOrden= id;
+            verificarEstado()
     }
 }
-async function verificarEstado(id) {
-    const respuesta = await fetch(`http://127.0.0.1:3002/ordenes/${id} `, {
+async function verificarEstado() {
+    const respuesta = await fetch(`http://127.0.0.1:3002/ordenes/${idOrden} `, {
 		method: "get",
 	});
 	estado  = await respuesta.json();
@@ -158,4 +163,26 @@ async function verificarEstado(id) {
     document.getElementById('estadoO').innerHTML='';
     document.getElementById('estadoO').innerHTML=estado.estadoOrden;
    
+}
+function agregarCantidadP() {
+    orden.forEach(async producto => {
+        let actual = producto.producto;
+        let cantidad = producto.valor;
+        const response  = await fetch(`http://localhost:3002/productos/${actual._id}`, {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      cantidad: cantidad,
+                    }),
+                  });
+                  const ressJSON = await response.json();
+                  console.log(`se agrego cantidad`, ressJSON);
+        const respuesta = await fetch(`http://localhost:3002/productos/${actual._id}`, {
+        method: "get",
+    });
+    let actualizado = await respuesta.json();
+    product.push(actualizado[0]);
+    });
 }
